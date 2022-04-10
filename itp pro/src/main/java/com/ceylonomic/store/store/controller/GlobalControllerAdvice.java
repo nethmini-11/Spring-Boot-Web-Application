@@ -32,7 +32,7 @@ public class GlobalControllerAdvice {
 		
 	@Autowired
 	private ShoppingCartService shoppingCartService;
-
+//remove
 	@InitBinder
 	public void initBinder(WebDataBinder dataBinder) {
 		StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
