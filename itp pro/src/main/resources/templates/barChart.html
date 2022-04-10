@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+
+</head>
+<body>
+	<div class="container">
+		<h2 align="center">Data Graph</h2>
+
+		<div id="container"
+			style="width: 1000px; height: 600px; margin: 0 auto"></div>
+			<p class="highcharts-description">
+        Chart showing stacked columns for comparing quantities. Stacked charts
+        are often used to visualize data that accumulates to a sum. This chart
+        is showing data labels for each individual section of the stack.
+    </p>
+	</div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/gantt/9.2/modules/exporting.js"></script>
+	<script th:inline="javascript">
+    $(function(){
+    Highcharts.chart('container', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Organization'
+        },
+        subtitle: {
+            text: 'Details'
+        },
+        xAxis: {
+            categories: [[${title}]],
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            max:1000,
+            title: {
+                text: 'Title'
+            }
+        },
+        legend: {
+        align: 'right',
+        x: -800,
+        verticalAlign: 'top',
+        y: 25,
+        floating: true,
+        backgroundColor:
+            Highcharts.defaultOptions.legend.backgroundColor || '#EFFDEB',
+        borderColor: '#196104',
+        borderWidth: 1,
+        shadow: false
+    },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.title}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} K</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        colors: [
+'#399649', 
+'#AA4643', 
+
+],
+        
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+                
+            }
+        },
+        series: [{
+            name: 'My Products',
+            data: [[${price}]]
+        }]
+      });
+    });
+</script>
+
+</body>
+</html>
+

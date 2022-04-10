@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org./1999/xhtml" xmlns:sec="http://www.w3.org./1999/xhtml">
+<head th:replace="common/header :: common-header" >
+
+</head>
+<body>
+
+
+  <div th:replace="adminHome :: navbarAdmin"> </div>
+
+  <div class="container1 page-content">
+    <form th:action="@{/article/add}" method="post" enctype="mpoultipart/form-data">
+      
+          <div class="row my-2 mx-2 main">
+          <div class="col-md-4 col-12 mycol">
+            <!--image--> <img src="/image/background/side.png" width="100%" height="100%"> </div>
+       
+        <div class="col-md-8 col-12 xcol">
+         
+         
+        <div class="form-group row">  
+        <legend class="center-block">
+        Add New Product 
+        </legend>
+          <label for="title" class="col1" >Product Name</label>
+          <div class="col1">
+            <input type="text" class="form-control" id="title" name="title">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="category" class="col1">Product Category</label>
+          <div class="col1">
+            <input type="text" class="form-control" id="categories" name="category" data-role="tagsinput">
+          </div>
+          <div class="col1">
+            <button type=button class="btn1 btn-primary btn-category badge badge-pill badge-primary mr-1 mb-1" th:each="item : ${allCategories}" 
+            th:text="${item}" th:id="item+${category}"></button>           
+          </div><br>          
+        </div>
+        <div class="form-group row">
+          <label for="size" class="col1">Size(Hints: Vegetables::1Kg)</label>
+          <div class="col1">
+            <input type="text" class="form-control" id="sizes" name="size" >
+          </div></div>
+          
+        <div class="form-group row">
+          <label for="price" class="col1">Price</label>
+          <div class="col1 input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">LKR</span>
+            </div>
+            <input th:value="${article.price}" type="number" name="price" step="10"
+  				class="form-control" id="price" placeholder="List Price" />
+          </div>
+        </div>
+        
+        <div class="form-group row">
+          <label for="stock" class="col1">Available stock</label>
+          <div class="col1">
+            <input th:value="${article.stock}" type="number"
+                        name="stock" class="form-control" id="stock"
+                        placeholder="Number of in-stock" />
+          </div>
+        </div>       
+        
+        <div class="form-group row">
+          <label for="picture" class="col1" >Product Picture</label>
+          <div class="col1">
+            <input type="text" class="form-control" id="picture" name="picture">
+          </div>
+        </div>
+        <br><br>
+        <div class="form-group row1">
+          <div class="offset-2 col-6">
+          	<button type="submit" class="btn btn-success">Add Article</button>
+              <a class="btn btn-danger" th:href="@{/admin}">Cancel</a></div>
+          </div>
+        </div>
+        </div>
+    
+  </form></div>
+  
+
+
+
+  <div th:replace="common/header :: body-scripts"> </div>
+  <script src="/js/tagsinput-custom.js"></script>
+  
+
+</body>
+</html>

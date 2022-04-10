@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org./1999/xhtml">
+<head th:replace="common/header :: common-header" >
+
+</head>
+<body >
+
+ <style>
+body{
+background-image: url("/image/background/bg2.png");
+background-repeat: no-repeat;
+
+background-size: 100% 160%;
+}
+</style>
+  <div th:replace="common/header :: navbar"> </div>
+  
+  <div class="container page-content mt-3 mb-3">  <br><br>
+   <center> <div th:if="${addArticleSuccess}" class="alert1 alert1-success alert1-dismissible fade show" role="alert">
+      <strong>Added item to the shopping cart!</strong>
+      <div class="d-flex mt-2">
+        <a th:href="@{/store}" class="btn btn-info rounded-pill mx-2"><i data-feather="arrow-left"></i> Continue shopping</a>            
+        <a th:href="@{/shopping-cart/cart}" class="btn btn-primary rounded-pill mx-2">Go to shopping cart <i data-feather="arrow-right"></i></a>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+      </div></center>
+    <div th:if="${notEnoughStock}" class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Could not add to cart, only <span th:text="${article.stock}"></span> in stock.</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>  <br><br><br><br>
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <img class="img5" th:src="${article.picture}">
+          </div>
+          <div class="col-md-6 mt-3 mt-md-0"> <br>         
+            <h2 class="card-title" th:text="${article.title}"></h2>
+            <div class="d-flex align-items-center">
+              <h2 class="price font-weight-bold mr-3"><br>
+                <span th:text="'Rs.'+${#numbers.formatDecimal(article.price, 0, T(Math).round(article.price) == article.price ? 0 : 2)}"></span>
+              </h2>              
+              <h6><br><br>(<span th:text="${article.stock}"></span> in stock)</h6>
+            </div>            
+            
+            <form th:action="@{/shopping-cart/add-item}" method="post">
+              <input hidden="hidden" th:field="*{article.id}">  
+              <div class="form-row">
+                <div class="form-group col-sm-3">
+                  <label class="font-weight-bold d-block">Size</label>
+                  <select class="form-control" id="size" th:name="size">
+                    <option th:each="size : ${article.sizes}" th:value="${size.getValue()}" th:text="${size.getValue()}"></option>
+                  </select>
+                </div>                               
+              </div>
+              <div class="form-row">
+                <div class="form-group col-sm-3">
+                  <label class="font-weight-bold" for="quantity">Quantity</label>
+                  <select class="form-control" id="quantity" th:name="qty">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>                   
+                  </select><br><br><br>
+                  <button type="submit" class="btn8 btn8-primary btn8-block rounded-pill atc-demo">Add to Cart</button>
+                </div>
+                
+                  
+                
+              </div>
+            </form>
+            <hr>
+           </div>
+        </div>
+      </div>    
+    </div><br><br><br><br>
+  </div>
+
+  <div th:replace="common/header :: footer"> </div> 
+  <div th:replace="common/header :: body-scripts"> </div>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org./1999/xhtml">
+<head th:replace="common/header :: common-header" >
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+ </head>
+
+
+
+<body class="d-flex flex-column" >
+  <div th:replace="common/header :: navbar"> </div>
+
+  
+  <div class="jumbotron jumbotron-fluid mt-0" th:style="'background-image: url(/image/background/cover.png);'">
+  	<div class="container">
+      <div class="row text-left py-5">   
+         <div class="col">  
+            <br>
+            <h1 class="font-weight-bold">A Good Life At a Great Price</h1>
+            <h5 class="heading" >Find it,Love it, Buy it</h5><br>
+            <a th:href="@{/store}" class="button button1" data-addclass-on-xs="btn-sm" >SHOP NOW   <i class='fas fa-chevron-right' style='color:white'></i></a>       
+          </div> 
+      </div>
+  </div>
+  </div>  <div class="container text-center">
+   <center><br><br><br><div class="h4">Who Are We</div></center>
+  <p>We are an online local marketplace. We help local farmers 
+and traders to sell their products. We sell fresh fruits and
+vegetables, spices, organic fertilizers, plants and handicrafts. 
+The sellers who have registered under us does not have to 
+stress about how to deliver the product, and so on. Since, 
+we provide express delivery. Our main focus is customer 
+satisfaction so we have smoothen the experience from the 
+time of purchase till the customer receives their order.</p></div>
+  <section class="section py-5 ">
+    <div class="container text-center">
+      <div class="h4 ">Featured products</div>
+      
+        <div class="featured-items mt-4">        
+          <div class="card card-product card-featured" th:each="article : ${articles}">
+            <div class="card-body">
+              <a th:href="@{/article-detail?id=}+${article.id}"><img class="card-img-top" th:src="${article.picture} ? ${article.picture} : '/image/article/itemexample.jpg'" alt="Card image cap"></a>
+              <a th:href="@{/article-detail?id=}+${article.id}" class="card-title" th:text="${article.title}"></a>
+              <div class="price"><span th:text="'$'+${article.price}"></span></div>
+            </div>              
+          </div>
+        </div>
+    </div>
+  </section>
+  <br><br><br>
+  
+    <!-- start section -->
+  <section class="section py-5 bg-white">
+    <div class="container">
+      <div class="row"><div class="col9"></div>
+        <div class="col-sm-6 col-md-4 mb-2">
+          <div class="text-center features-card">
+            <i class='fas fa-truck-moving' style='font-size:36px;color:black'></i><br>
+            <h5>Express Delivery</h5>
+            <p>We assure the order to be delivered between 24 to hours</p>
+          </div>
+        </div><div class="col9"></div>
+        <div class="col-sm-6 col-md-4 mb-2">
+          <div class="text-center features-card">
+            <i class='fas fa-user-clock' style='font-size:36px;color:black'></i><br>
+            <h5> 24/7 Hours Customer Service</h5>
+            <p>Questions?Our round-the-clock support team is available to help anytime ,anywhere.</p>
+          </div>
+        </div>
+        
+      </div>
+    </div> <!-- end container -->
+  </section> <!-- end section -->
+  
+
+
+
+
+  
+   
+  
+  <div th:replace="common/header :: footer"> </div>  
+  <div th:replace="common/header :: body-scripts"> </div>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.featured-items').slick({
+    	  infinite: true,
+    	  slidesToShow: 4,
+    	  slidesToScroll: 4,
+    	  responsive: [
+    	    {
+    	      breakpoint: 1200,
+    	      settings: {
+    	        slidesToShow: 3,
+    	        slidesToScroll: 3,
+    	      }
+    	    },
+    	    {
+    	      breakpoint: 768,
+    	      settings: {
+    	        slidesToShow: 2,
+    	        slidesToScroll: 2
+    	      }
+    	    },
+    	    {
+    	      breakpoint: 480,
+    	      settings: {
+    	        slidesToShow: 1,
+    	        slidesToScroll: 1
+    	      }
+    	    }    	    
+    	  ]
+      })
+      .on('setPosition', function (event, slick) {
+		slick.$slides.css('height', slick.$slideTrack.height() + 'px');
+	});
+	
+	
+	
+      $('.featured-brands').slick({
+    	  slidesToShow: 6,
+    	  slidesToScroll: 1,
+    	  responsive: [
+      	    {
+      	      breakpoint: 1200,
+      	      settings: {
+      	        slidesToShow: 5,
+      	        slidesToScroll: 1,
+      	      }
+      	    },
+      	    {
+      	      breakpoint: 992,
+      	      settings: {
+      	        slidesToShow: 4,
+      	        slidesToScroll: 4
+      	      }
+      	    },
+      	    {
+      	      breakpoint: 768,
+      	      settings: {
+      	        slidesToShow: 3,
+      	        slidesToScroll: 3
+      	      }
+      	    },
+      	  	{
+      	      breakpoint: 550,
+      	      settings: {
+      	        slidesToShow: 2,
+      	        slidesToScroll: 2
+      	      }
+      	    },
+      	  	{
+      	      breakpoint: 380,
+      	      settings: {
+      	        slidesToShow: 1,
+      	        slidesToScroll: 1
+      	      }
+      	    }, 
+      	  ]
+      });
+    });
+  </script>
+</body>
+</html>
