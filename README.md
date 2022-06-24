@@ -1,1 +1,7 @@
-# Spring-Boot-Web-Application
+![header](https://capsule-render.vercel.app/api?type=wave&color=gradient&height=280&section=header&text=E-Commerce%20System%20%20Spring-Boot&fontSize=40&render&animation=fadeIn&fontAlignY=35)
+
+## Individual Contribution:
+
+Product and cart are two interrelated functions. In this case, the product page must be implemented before the cart page. In product management, three users are associated with this function: seller, admin, and customer. The seller can add products to the system, remove products from the system, edit the included products view products and generate a product list report . Admin can view the product analysis bar chart and analyze the product categories and the variance of the product count of each category. Here, customers can view the product on the store page, and also search the product by keywords, and filter products by category, price, and size. cart management is a function that is almost entirely owned by the customer. As mentioned earlier, the customer can add the searched products to their shopping cart by clicking on the "Add to the cart" button. The customer will then be taken to the shopping cart page. Here he/she has the ability to edit (decrease/increase) the products currently added to the cart as he/she wants and remove them from the cart as mentioned above. This process takes place under the product & cart management function. For the product report generation used openPDF library and to generate product analysis chart used Highchart API.
+
+## 
